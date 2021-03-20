@@ -67,28 +67,29 @@
 //    }
 //}
 
-//void fillMatrix()
-//{
-//    std::default_random_engine random_engine(rand()%10);
-//    std::uniform_real_distribution<double> distrib(0, 100);
 
-//    for(int i = 0; i < rows; i++){
-//        for(int j = 0; j < columns; j++){
-//            multiplicationMatrix[i][j] = distrib(random_engine);
-//        }
-//    }
-//    printMatrix();
-//}
 
 void printMatrix(std::vector<std::vector<double>>&matrix)
 {
     for(int i = 0; i < matrix.size(); i++){
         for(int j = 0; j < matrix.at(0).size(); j++){
-            matrix[i][j] = 0;
             std::cout<<matrix[i][j]<<" ";
         }
         std::cout<<std::endl;
     }
+}
+
+void fillMatrix(std::vector<std::vector<double>>&matrix)
+{
+    std::default_random_engine random_engine(rand()%10);
+    std::uniform_real_distribution<double> distrib(0, 100);
+
+    for(int i = 0; i < matrix.size(); i++){
+        for(int j = 0; j < matrix.at(0).size(); j++){
+            matrix[i][j] = distrib(random_engine);
+        }
+    }
+    printMatrix(matrix);
 }
 
 int main()
@@ -101,8 +102,9 @@ int main()
     std::cin>>secondMatrixRows>>secondMatrixCols;
     std::vector<std::vector<double>> firstMatrix(firstMatrixRows, std::vector<double>(firstMatrixCols));
     std::vector<std::vector<double>> secondMatrix(secondMatrixRows, std::vector<double>(secondMatrixCols));
-    //fillMatrix(firstMatrix);
-    printMatrix(firstMatrix);
+    fillMatrix(firstMatrix);
+    std::cout<<std::endl;
+    fillMatrix(secondMatrix);
     system("pause");
     return 0;
 }
